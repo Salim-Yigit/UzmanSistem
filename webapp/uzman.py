@@ -29,13 +29,23 @@ def predict(text,threshold=0.68):
 
 
 def export_graph():
-    df = pd.read_csv("/test_100")
+    df = pd.read_csv(str(Path(__file__).parent.parent) + "/test_100.csv")
+    prepare()
     global y_test
     y_test = df["score"]
     x = df["text"]
     global y_pred
     y_pred = pipeline.predict(x)
-    return classification_report(y_test, y_pred)
+
+    toReturn = {
+        "accuracy": round(accuracy_score(y_pred, y_test), 2),
+        "recall": round(recall_score(y_pred,y_test),2),
+        "precision": round(precision_score(y_pred,y_test), 2),
+        "auc": round(roc_auc_score(y_pred,y_test), 2),
+        "f1": round(f1_score(y_pred,y_test), 2)
+    }
+    
+    return toReturn
 
 def export_heatmap():
     prepare()
@@ -50,7 +60,6 @@ def export_heatmap():
                 annot=True, fmt='.0f', 
                 xticklabels=['Predicted negative', 'Predicted positive'], 
                 yticklabels=['Negative', 'Positive']).get_figure()
-
     
     fig.savefig("webapp\heatmap.png")
     #plt.show()

@@ -6,20 +6,35 @@
                     <div class="card-body">
                         <input (keyup)="onKey($event)" type="text" placeholder="Please enter comment!" />
                         <button class="btn btn-success" (click)="onClickSend()">SEND</button>
-                        <h3 *ngIf="trained"> {{prediction}} </h3>
+                        <h3 *ngIf="predicted"> {{prediction}} </h3>
                     </div>
                 </div>
             </div>
             <div class="row mt-4 card">
                 <div class=card-body>
-                    <h1>Graph</h1>
-                    <button class="btn btn-success" (click)="onClickSendGraph()">SEND</button>
+                    <div class="row">
+                      <h1>Graph</h1>
+                      <button class="btn btn-success" (click)="onClickSendGraph()">SEND</button>
+                    </div>
+                  <div class="row justify-content-center">
+<!--                    <img class="col-8" [src]="plot" alt="image">-->
+                    <p>Precision: {{ precision }}</p>
+                    <p>Recall: {{ recall }}</p>
+                    <p>F1: {{ f1 }}</p>
+                    <p>Auc: {{ auc }}</p>
+
+                  </div>
                 </div>
             </div>
             <div class="row mt-4 card">
                 <div class="card-body">
+                  <div class="div">
                     <h1>Heatmap</h1>
                     <button class="btn btn-success" (click)="onClickSendHeatmap()">SEND</button>
+                  </div>
+                  <div *ngIf="sendHeatmap" class="row justify-content-center">
+                    <img class="col-8" [src]="exported_heatmap" alt="image">
+                  </div>
                 </div>
             </div>
         </div>
