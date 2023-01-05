@@ -1,3 +1,3 @@
-  Uzman Sistemler Dersi Dönem Projesi__   
-  Salim Yiğit Koca__   
+  Uzman Sistemler Dersi Dönem Projesi  
+  Salim Yiğit Koca  
   Semih Erken  
